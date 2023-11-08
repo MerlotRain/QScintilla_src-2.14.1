@@ -2,9 +2,14 @@ cmake_minimum_required(VERSION 3.12.0)
 set(CMAKE_COLOR_MAKEFILE ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+if(APPLE)
+    set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/qt@5/5.15.10_1/lib/cmake")
+endif(APPLE)
+
 
 # POLICIES
 cmake_policy(SET CMP0048 NEW)
@@ -31,7 +36,4 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 project(QSci)
 
-find_package(Qt5 )
-
-add_library(qscintilla2_qt5 SHARED)
-
+add_subdirectory(src)
